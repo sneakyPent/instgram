@@ -1,0 +1,30 @@
+#!/bin/bash
+while getopts ":lp" opt; do
+	case $opt in
+		l)
+#			while read line; do
+#				echo $line
+#			done < givawayInfo.txt
+			echo "Username"
+			read username
+			echo "Username is $username"
+			echo "Enter password: "
+			read passwd
+			echo "password is $passwd"
+			python main.py -u $username -p $passwd -l
+			;;
+		p)
+			echo "Give post link"
+			read post
+			python main.py -g $post -o
+			;;
+		\?)
+			echo "Invalid option: -$OPTARG" >&2
+			exit 1
+			;;
+		:)
+			echo "Option -$OPTARG requires an argument." >&2
+			exit 1
+			;;
+  	esac
+done
